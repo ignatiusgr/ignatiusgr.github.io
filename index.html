@@ -78,7 +78,7 @@
                         },
                         color: '#333'
                     }
-                }
+                },
                 scales: {
                     y: {
                         display: false,  // Hides Y axis
@@ -87,7 +87,7 @@
                             display: false  // Removes grid lines
                         }
                     }
-                }
+                },
             plugins: [{
                 afterDatasetsDraw: function(chart) {
                     const ctx = chart.ctx;
@@ -102,8 +102,9 @@
                         });
                     });
                 }
-            }]
-        });
+            }],
+        }
+            });
     </script>
 </body>
 </html>
