@@ -53,17 +53,56 @@
                     borderColor: [
                         'rgba(0, 0, 0, 0)',
                     ],
-                    borderWidth: 0
+                    borderRadius: {
+                        topLeft: 10,
+                        topRight: 10
+                    },
+                    borderSkipped: false
                 }]
             },
             options: {
                 responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        enabled: true
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        font: {
+                            weight: 'bold',
+                            size: 14
+                        },
+                        color: '#333'
                     }
                 }
-            }
+                scales: {
+                    y: {
+                        display: false,  // Hides Y axis
+                        beginAtZero: true,
+                        grid: {
+                            display: false  // Removes grid lines
+                        }
+                    }
+                }
+            plugins: [{
+                afterDatasetsDraw: function(chart) {
+                    const ctx = chart.ctx;
+                    chart.data.datasets.forEach((dataset, i) => {
+                        const meta = chart.getDatasetMeta(i);
+                        meta.data.forEach((bar, index) => {
+                            const data = dataset.data[index];
+                            ctx.fillStyle = '#333';
+                            ctx.font = 'bold 14px Arial';
+                            ctx.textAlign = 'center';
+                            ctx.fillText(data, bar.x, bar.y - 5);
+                        });
+                    });
+                }
+            }]
         });
     </script>
 </body>
