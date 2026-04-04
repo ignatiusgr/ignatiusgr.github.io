@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ninja Weekly Saturday Runs</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        body {
+            font-family: sans-serif, helvetica, Arial;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+            background-color: #E8EEF8;
+        }
+        .content {
+            max-width: 864px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+        }
+        .title {
+            color: #1D1F22;
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0;
+            text-align: left;
+        }
+        .description {
+            color: #353A44;
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        #map-container {
+            max-width: 864px;
+            width: 100%;
+            aspect-ratio: 6 / 4; /* Height is always 2/3 of width */
+            margin: 0px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            color: #ffffff;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <p class="title">&#129399; &#127939; Saturday Ninja Run Map</p>
+        <p class="description">Route for Saturday Mar 28 2026 at 9:00 AM</p>
+        <p class="description">This map updates to a new route every Friday at 9:00 AM</p>
+        <div id="map-container">
+            <div id="map"></div>
+        </div>
+    </div>
+    <script>
+        // Initialize the map with Alidade Smooth tiles
+        const map = L.map('map').setView([44.3894, -79.6903], 13); // Barrie, ON
+
+        // Add Alidade Smooth tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Load your route data (if available)
+        fetch("data.json")
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector(".description").textContent = data.message;
+                L.geoJSON(data.route.geojson).addTo(map);
+            })
+            .catch(error => {
+                console.error("Error loading route data:", error);
+            });
+    </script>
+</body>
+</html>
