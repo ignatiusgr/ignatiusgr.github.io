@@ -1,110 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
-    <style>
-        body {
-            font-family: helvetica, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            line-height: 1.6;
-            color: #545a5e
-        }
-        h1 {
-            color: #b3cee2;
-        }
-        .chart-container {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f5f5f5;
-            border-radius: 8px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iter_Pictoris_site</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-    <h1>Bienvenido o bienvenida</h1>
-    <p>Esto es un experimento, por favor, ignore.</p>
-    <p>This is just an experiment, please ignore.</p>
-        
-    <div class="chart-container">
-        <canvas id="myChart"></canvas>
-    </div>
+  <header class="site-header">
+    <nav class="navbar">
+      <a href="index.html" aria-label="Home">
+        <div class="logo-placeholder"></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Work</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="nav-divider"></div>
+  </header>
 
-    <!-- Chart.js library -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <!-- Your chart code -->
-    <script>
-        const ctx = document.getElementById('myChart');
-        
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                datasets: [{
-                    label: 'My level of energy as I move through the year',
-                    data: [35, 50, 40, 65, 70, 65, 55, 60, 89, 85, 75, 70],
-                    backgroundColor: [
-                        'rgba(78, 128, 152, 1)',
-                    ],
-                    borderColor: [
-                        'rgba(0, 0, 0, 0)',
-                    ],
-                    borderRadius: {
-                        topLeft: 10,
-                        topRight: 10
-                    },
-                    borderSkipped: false
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        enabled: true
-                    },
-                    datalabels: {
-                        anchor: 'end',
-                        align: 'top',
-                        font: {
-                            weight: 'bold',
-                            size: 14
-                        },
-                        color: '#333'
-                    }
-                },
-                scales: {
-                    y: {
-                        display: false,  // Hides Y axis
-                        beginAtZero: true,
-                        grid: {
-                            display: false  // Removes grid lines
-                        }
-                    }
-                },
-            plugins: [{
-                afterDatasetsDraw: function(chart) {
-                    const ctx = chart.ctx;
-                    chart.data.datasets.forEach((dataset, i) => {
-                        const meta = chart.getDatasetMeta(i);
-                        meta.data.forEach((bar, index) => {
-                            const data = dataset.data[index];
-                            ctx.fillStyle = '#333';
-                            ctx.font = 'bold 14px Arial';
-                            ctx.textAlign = 'center';
-                            ctx.fillText(data, bar.x, bar.y - 5);
-                        });
-                    });
-                }
-            }],
-        }
-            });
-    </script>
+  <main>
+    <section class="intro">
+      <p>
+        Iter Pictoris is the personal site of Ignacio Gimenez Rebollo. The following projects illustrate previous experience in the fields of product management, UX/UI design, user research and accessibility, information design and graphic design. Use the tags below to filter down projects.
+      </p>
+    </section>
+
+    <section class="filters">
+      <span class="filters-label">Filter by</span>
+      <div class="tag-list">
+        <button class="tag" data-tag="management">Management</button>
+        <button class="tag" data-tag="ux-ui">UX/UI</button>
+        <button class="tag" data-tag="user-research">User research</button>
+        <button class="tag" data-tag="information-design">Information design</button>
+        <button class="tag" data-tag="art-direction">Art direction / graphic design</button>
+      </div>
+    </section>
+
+    <section class="project-grid">
+
+      <a href="project.html" class="project-card" data-tags="management user-research">
+        <div class="project-image"></div>
+        <h3 class="project-title">Capital Connect platform</h3>
+        <p class="project-date">CMHC, 2024</p>
+      </a>
+
+      <a href="project.html" class="project-card" data-tags="ux-ui information-design art-direction">
+        <div class="project-image"></div>
+        <h3 class="project-title">KoboToolbox website redesign</h3>
+        <p class="project-date">Kobo, 2023</p>
+      </a>
+
+      <a href="project.html" class="project-card" data-tags="ux-ui information-design">
+        <div class="project-image"></div>
+        <h3 class="project-title">TRACE Portal</h3>
+        <p class="project-date">Kobo + EAA, 2022</p>
+      </a>
+
+      <a href="project.html" class="project-card" data-tags="art-direction">
+        <div class="project-image"></div>
+        <h3 class="project-title">KoboToolbox NLP and data analysis features</h3>
+        <p class="project-date">Kobo, 2021</p>
+      </a>
+
+      <a href="project.html" class="project-card" data-tags="management user-research ux-ui">
+        <div class="project-image"></div>
+        <h3 class="project-title">COVID-19 Information Portal</h3>
+        <p class="project-date">Dahdaleh Institute, 2020</p>
+      </a>
+
+      <a href="project.html" class="project-card" data-tags="information-design">
+        <div class="project-image"></div>
+        <h3 class="project-title">Cancer Screening Guide for First Nations</h3>
+        <p class="project-date">OCAD + ONtario Health, 2019</p>
+      </a>
+
+      <a href="project.html" class="project-card" data-tags="ux-ui user-research">
+        <div class="project-image"></div>
+        <h3 class="project-title">Digital Services Common Design</h3>
+        <p class="project-date">United Nations OCHA, 2019</p>
+      </a>
+
+      <a href="project.html" class="project-card" data-tags="art-direction information-design">
+        <div class="project-image"></div>
+        <h3 class="project-title">Magnolia Foundation website</h3>
+        <p class="project-date">Fundación Magnolia, 2022</p>
+      </a>
+
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
